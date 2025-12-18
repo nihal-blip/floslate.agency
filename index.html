@@ -3,137 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FloSlate — Coming Soon</title>
-    
-    <!-- Google Fonts -->
+    <title>FloSlate - Coming Soon</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Quantico:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&family=Quantico:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables */
         :root {
             --color-base: #1a1a1a;
-            --color-bg: #ffffff;
             --color-text-primary: #1a1a1a;
             --color-text-secondary: #6b6b6b;
-            --color-text-muted: #9a9a9a;
             --spacing-unit: 1rem;
             --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-duration: 0.6s;
         }
-        
-        /* Reset & Base Styles */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        html {
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
+
         body {
             font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             color: var(--color-text-primary);
-            background-color: var(--color-bg);
+            background-color: #ffffff;
             line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        /* Layout */
-        .container {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: var(--spacing-unit) clamp(1.5rem, 5vw, 4rem);
+            padding: var(--spacing-unit);
+            overflow-x: hidden;
+            position: relative;
         }
-        
-        .content {
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .background-animation > div {
+            width: 100% !important;
+            height: 100% !important;
+            min-height: 100vh !important;
+            pointer-events: auto;
+        }
+
+        .container {
             max-width: 800px;
             width: 100%;
+            text-align: left;
+            animation: fadeInUp 0.8s var(--transition-ease) forwards;
+            opacity: 0;
             position: relative;
-            transform: translateX(-2%);
+            z-index: 1;
         }
-        
-        /* Logo */
+
         .logo {
-            width: clamp(200px, 30vw, 300px);
-            height: auto;
-            margin-bottom: clamp(3rem, 6vw, 4.5rem);
-            display: block;
-            opacity: 1;
+            margin-top: -2rem;
+            margin-bottom: clamp(4rem, 6vw, 5.5rem);
+            animation: fadeInUp 0.8s var(--transition-ease) 0s forwards;
+            opacity: 0;
         }
-        
+
         .logo img {
-            width: 100%;
             height: auto;
+            max-width: 180px;
+            width: auto;
             display: block;
-            max-width: 100%;
-            object-fit: contain;
         }
-        
-        /* Typography */
-        .headline {
-            font-family: 'Hanken Grotesk', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 600;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-            color: var(--color-text-primary);
-        }
-        
+
         .subheadline {
             font-family: 'Hanken Grotesk', sans-serif;
-            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-size: clamp(1.25rem, 3vw, 2rem);
             font-weight: 400;
-            line-height: 1.5;
-            letter-spacing: -0.01em;
-            margin-bottom: clamp(2rem, 4vw, 3rem);
+            line-height: 1.4;
+            margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
             color: var(--color-text-primary);
+            animation: fadeInUp 0.8s var(--transition-ease) 0.2s forwards;
+            opacity: 0;
         }
-        
-        .supporting-text {
+
+        .paragraph {
             font-family: 'Hanken Grotesk', sans-serif;
-            font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
-            font-weight: 400;
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
             line-height: 1.7;
-            max-width: 600px;
-            margin-bottom: clamp(2.5rem, 5vw, 4rem);
             color: var(--color-text-secondary);
+            margin-bottom: clamp(2rem, 4vw, 3rem);
+            max-width: 600px;
+            animation: fadeInUp 0.8s var(--transition-ease) 0.4s forwards;
+            opacity: 0;
         }
-        
+
         .status {
             font-family: 'Quantico', monospace;
-            font-size: clamp(0.75rem, 1.2vw, 0.875rem);
-            font-weight: 400;
-            letter-spacing: 0.05em;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            color: var(--color-text-secondary);
             text-transform: uppercase;
-            color: var(--color-text-muted);
-            margin-bottom: clamp(2rem, 4vw, 3rem);
+            letter-spacing: 0.1em;
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
+            animation: fadeInUp 0.8s var(--transition-ease) 0.6s forwards;
+            opacity: 0;
         }
-        
+
         .contact {
             font-family: 'Quantico', monospace;
-            font-size: clamp(0.75rem, 1.2vw, 0.875rem);
-            font-weight: 400;
+            font-size: clamp(0.875rem, 1.2vw, 1rem);
             color: var(--color-text-secondary);
             text-decoration: none;
-            transition: color var(--transition-duration) var(--transition-ease);
-            display: inline-block;
+            transition: color 0.3s var(--transition-ease);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: fadeInUp 0.8s var(--transition-ease) 0.8s forwards;
+            opacity: 0;
         }
-        
+
         .contact:hover {
             color: var(--color-text-primary);
         }
-        
-        /* Animations */
+
+        .contact-arrow {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: opacity 0.3s var(--transition-ease), transform 0.3s var(--transition-ease);
+        }
+
+        .contact:hover .contact-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -144,63 +151,37 @@
                 transform: translateY(0);
             }
         }
-        
-        .logo {
-            animation: fadeInUp 0.8s var(--transition-ease) 0s both;
-        }
-        
-        .headline {
-            animation: fadeInUp 0.8s var(--transition-ease) 0.2s both;
-        }
-        
-        .subheadline {
-            animation: fadeInUp 0.8s var(--transition-ease) 0.4s both;
-        }
-        
-        .supporting-text {
-            animation: fadeInUp 0.8s var(--transition-ease) 0.6s both;
-        }
-        
-        .status {
-            animation: fadeInUp 0.8s var(--transition-ease) 0.8s both;
-        }
-        
-        .contact {
-            animation: fadeInUp 0.8s var(--transition-ease) 1s both;
-        }
-        
-        /* Responsive Adjustments */
+
         @media (max-width: 768px) {
-            .content {
-                transform: translateX(0);
+            body {
+                padding: clamp(1rem, 5vw, 2rem);
             }
-            
-            .supporting-text {
-                max-width: 100%;
-            }
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
+
+            .container {
+                text-align: left;
             }
         }
     </style>
 </head>
 <body>
+    <div class="background-animation">
+        <div data-us-project="AcHG5ILtLnhir9WAUGoZ" style="width:1440px; height: 900px"></div><script type="text/javascript">!function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.5.3/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();</script>
+    </div>
     <div class="container">
-        <div class="content">
-            <div class="logo">
-                <img src="FInal.png" alt="FloSlate">
-            </div>
-            <p class="subheadline">Designing commerce experiences with imagination and intention.</p>
-            <p class="supporting-text">Fresh yet reliable. Empathetic yet bold. We design and build thoughtful, functional websites that are alive — balancing creativity with clarity.</p>
-            <p class="status">Website coming soon.</p>
-            <a href="mailto:nihal@floslate.agency" class="contact">nihal@floslate.agency</a>
+        <div class="logo">
+            <img src="FInal.png" alt="FloSlate" />
         </div>
+        <h2 class="subheadline">Design that feels alive, considered, and precise.</h2>
+        <p class="paragraph">Fresh yet reliable. Empathetic yet bold. We design and build thoughtful, functional websites that are alive — balancing creativity with clarity.</p>
+        <div class="status">Our website is coming soon.</div>
+        <a href="mailto:nihal@floslate.agency" class="contact">
+            nihal@floslate.agency
+            <svg class="contact-arrow" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 6H11M11 6L7 2M11 6L7 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
     </div>
 </body>
 </html>
+
 
