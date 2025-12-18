@@ -22,6 +22,11 @@
             box-sizing: border-box;
         }
 
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
         body {
             font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             color: var(--color-text-primary);
@@ -34,6 +39,8 @@
             padding: var(--spacing-unit);
             overflow-x: hidden;
             position: relative;
+            margin: 0;
+            width: 100%;
         }
 
         .background-animation {
@@ -61,6 +68,7 @@
             position: relative;
             z-index: 1;
             margin: 0 auto;
+            flex-shrink: 0;
         }
 
         .logo {
@@ -149,6 +157,14 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
             }
         }
 
